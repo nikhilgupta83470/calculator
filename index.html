@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Designer Calculator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      body {
+        background: #0d1117;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .calculator {
+        background: #161b22;
+        border-radius: 20px;
+        padding: 20px;
+        box-shadow: 0 10px 25px rgba(87, 86, 86, 0.4);
+        width: 320px;
+        border: 13px groove;
+        border-color: rgb(59, 56, 56);
+      }
+
+      #display {
+        width: 97%;
+        height: 60px;
+        font-size: 2rem;
+        text-align: right;
+        border: none;
+        margin-bottom: 20px;
+        background: #0d1117;
+        color: #ffffff;
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+      }
+
+      button {
+        padding: 20px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 15px;
+        background: #21262d;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s ease;
+        box-shadow: 3px -2px 3px 3px black;
+      }
+
+      button:hover {
+        background: #b3bbc4;
+        color: #0d1117;
+      }
+
+      .equal {
+        grid-column: span 2;
+        background: #238636;
+      }
+
+      .equal:hover {
+        background: #2ea043;
+      }
+      .btn {
+        position: absolute;
+        top: 20px;
+        height: 30px;
+        width: 30px;
+        right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="btn" onclick="document.body.style.backgroundColor='white'">
+      <i class="fas fa_switch"></i>
+    </button>
+    <div class="div"></div>
+    <div class="calculator">
+      <input type="text" id="display" readonly />
+      <div class="buttons">
+        <button onclick="clearDisplay()">C</button>
+        <button onclick="deleteLast()">⌫</button>
+        <button onclick="append('%')">%</button>
+        <button onclick="append('/')">÷</button>
+
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('*')">×</button>
+
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('-')">−</button>
+
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('+')">+</button>
+
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button class="equal" onclick="calculate()">=</button>
+      </div>
+    </div>
+
+    <script>
+      function append(value) {
+        document.getElementById("display").value += value;
+      }
+
+      function clearDisplay() {
+        document.getElementById("display").value = "";
+      }
+
+      function deleteLast() {
+        let display = document.getElementById("display");
+        display.value = display.value.slice(0, -1);
+      }
+
+      function calculate() {
+        try {
+          let result = eval(document.getElementById("display").value);
+          document.getElementById("display").value = result;
+        } catch (error) {
+          document.getElementById("display").value = "Error";
+        }
+      }
+    </script>
+  </body>
+</html>
